@@ -72,6 +72,74 @@ public class SequenceDiagramGraph extends AbstractGraph implements StatisticalGr
         return EDGE_PROTOTYPES;
     }
     
+    public List<String> getUselessReturnMessage() {
+    	
+    	List<String> violations = new ArrayList<>();
+    	
+    	Collection<INode> nodes = getAllNodes();
+    	for (INode node : nodes) {
+    		if (node instanceof LifelineNode) {
+    			LifelineNode concept = (LifelineNode) node;
+    			
+    			// List of Children
+    			List<INode> children = concept.getChildren();
+    			for (INode child : children) {
+    				if (child instanceof ActivationBarNode) {
+    					ActivationBarNode actBar = (ActivationBarNode) child;
+    					// Loop over all messages
+    					for (IEdge edge : actBar.getConnectedEdges()) {
+    						if (edge instanceof ReturnEdge) {
+    							// Check that the source actBar has a message
+    							ActivationBarNode source = (ActivationBarNode)edge.getStartNode();
+    							boolean hasCallMessage = false;
+    							for (IEdge callEdge : source.getConnectedEdges()) {
+    								if (callEdge.getEndNode().equals(child)) {
+    									hasCallMessage = true;
+    								}
+    							}
+    							if (!hasCallMessage) {
+    								String sourceName = ((LifelineNode)source.getParent()).getName().toString();
+    								String destName = ((LifelineNode)child).getName().toString();
+
+    								violations.add("Return message from " + sourceName + " to " + destName + " without a calling message."); 
+    							}
+    						}
+    					}
+    				}
+    			}
+    		}
+    	}
+    	
+    	
+    	return violations;
+    }
+    
+    
+    public List<String> getEmptyActivationBar() {
+    	List<String> violations = new ArrayList<>();
+    	
+    	Collection<INode> nodes = getAllNodes();
+    	for (INode node : nodes) {
+    		if (node instanceof LifelineNode) {
+    			LifelineNode concept = (LifelineNode) node;
+    			
+    			// List of children
+    			List<INode> children = concept.getChildren();
+    			for (INode child : children) {
+    				if (child instanceof ActivationBarNode) {
+    					ActivationBarNode actBar = (ActivationBarNode) child;
+    					if (actBar.getConnectedEdges().size() == 0) {
+    						violations.add("Empty Activation Bar in " + concept.getName());
+    					}
+    				}
+    			}
+    		}
+    	}
+    	
+    	return violations;
+    }
+    
+    
     public Statistics getMessagesPerObject() {
     	
     	// Collect the data in 2 Lists
@@ -126,9 +194,8 @@ public class SequenceDiagramGraph extends AbstractGraph implements StatisticalGr
     	
 		List<String> violations = new ArrayList<>();
 		
-		// Dummy examples
-		violations.add("A return message without a call message in object 3");
-		violations.add("Empty Activation Bar in object 5");
+		violations.addAll(getUselessReturnMessage());
+		violations.addAll(getEmptyActivationBar());
 		
 		return violations;
 	}
