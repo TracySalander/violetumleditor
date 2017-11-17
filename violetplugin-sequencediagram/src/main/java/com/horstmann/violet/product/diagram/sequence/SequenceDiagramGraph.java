@@ -99,9 +99,9 @@ public class SequenceDiagramGraph extends AbstractGraph implements StatisticalGr
     							}
     							if (!hasCallMessage) {
     								String sourceName = ((LifelineNode)source.getParent()).getName().toString();
-    								String destName = ((LifelineNode)child).getName().toString();
-
-    								violations.add("Return message from " + sourceName + " to " + destName + " without a calling message."); 
+    								ActivationBarNode destination = (ActivationBarNode)edge.getEndNode();
+    								String destName = ((LifelineNode)destination.getParent()).getName().toString();
+    								violations.add("Return message from " + sourceName +  " to " + destName + " without a call message."); 
     							}
     						}
     					}
@@ -196,6 +196,8 @@ public class SequenceDiagramGraph extends AbstractGraph implements StatisticalGr
 		
 		violations.addAll(getUselessReturnMessage());
 		violations.addAll(getEmptyActivationBar());
+		
+		evaluateStatistics();
 		
 		return violations;
 	}
