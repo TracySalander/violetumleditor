@@ -1,0 +1,8 @@
+Classname1 Classname2 ... //ClassNames(do not need to include how many classes there are)
+ClassSize1 ClassSize2 ... //class sizes in terms of # of functions
+ClassCBO1 ClassCBO2 ... //class CBO's
+#ofRelationships1, #of Relationships2....//# of relationships per class 
+
+//for Class size and class CBO just write integers it will correspond to the order of classes you wrote for classnames
+
+
