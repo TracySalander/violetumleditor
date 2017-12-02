@@ -124,4 +124,5 @@ public class Statistics {
 	public void setWarningMessage(String warningMessage) {
 		this.warningMessage = warningMessage;
 	}
+
 }

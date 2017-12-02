@@ -258,4 +258,19 @@ public class ClassNode extends ColorableNode
             return lineString;
         }
     };
+    
+    
+ public int getNumOfMethods(){
+    	
+    	List<OneLineText> list;
+    	list = methods.getRows(); //methods is a MultiLine , getRows return a List type OneLineText
+    	int n;
+    	n=list.size();
+   	    if(list.isEmpty()){
+    		return n=0;
+    	}
+   	
+   	    return n;
+    }
+
 }

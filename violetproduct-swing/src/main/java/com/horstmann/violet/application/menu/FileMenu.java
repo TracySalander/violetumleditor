@@ -350,6 +350,21 @@ public class FileMenu extends JMenu
                 if (workspace != null)
                 {
                     IGraphFile graphFile = workspace.getGraphFile();
+                    if (graphFile.getGraph() instanceof ClassDiagramGraph) {
+	                  	ClassDiagramGraph graph = (ClassDiagramGraph)graphFile.getGraph();
+	                  	
+	                  	
+	                  	try {
+	                  		graph.writeStats();
+	                  	} catch (IOException e1) {
+	                  		// TODO Auto-generated catch block
+	                  		e1.printStackTrace();
+	                  	}
+	                  	
+	                  	
+
+	                  }
+
                     graphFile.save();
                     userPreferencesService.addRecentFile(graphFile);
                 }
@@ -774,5 +789,7 @@ public class FileMenu extends JMenu
 
     @ResourceBundleBean(key = "file.export.error.message")
     private String fileExportErrorMessage;
+    
+    
 
 }
