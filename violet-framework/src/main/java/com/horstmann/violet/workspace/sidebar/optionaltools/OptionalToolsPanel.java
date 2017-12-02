@@ -35,6 +35,10 @@ import com.horstmann.violet.framework.dialog.DialogFactory;
 import com.horstmann.violet.framework.dialog.DialogFactoryMode;
 import com.horstmann.violet.framework.injection.resources.ResourceBundleInjector;
 import com.horstmann.violet.framework.injection.resources.annotation.ResourceBundleBean;
+import com.horstmann.violet.framework.file.IOSystem;
+import com.horstmann.violet.framework.file.Login;
+import com.horstmann.violet.framework.file.SignUp;
+import com.horstmann.violet.framework.file.MainWindow;
 import com.horstmann.violet.framework.util.Warnings;
 import com.horstmann.violet.product.diagram.abstracts.IGraph;
 import com.horstmann.violet.product.diagram.abstracts.StatisticalGraph;
@@ -119,6 +123,7 @@ public class OptionalToolsPanel extends JPanel implements ISideBarElement
             public void actionPerformed(ActionEvent e)
             {
                 //TODO : create visualization window
+            	new MainWindow();
             }
         });
         return bVisualize;
