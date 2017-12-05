@@ -1,0 +1,19 @@
+Number of Classes: 5
+
+Name of Classes: Circle Rectangle Triangle Trapazoid Diamond
+
+Number of RelationShips between Classes and Interfaces: 7
+
+Class sizes in terms of functions per class:
+Name of Class: Circle Size of Class: 4
+Name of Class: Rectangle Size of Class: 3
+Name of Class: Triangle Size of Class: 3
+Name of Class: Trapazoid Size of Class: 4
+Name of Class: Diamond Size of Class: 2
+
+Coupling Between Objects:
+Name of Class: Circle CBO: 8
+Name of Class: Rectange CBO: 5
+Name of Class: Triangle CBO: 3
+Name of Class: Trapazoid CBO: 6
+Name of Class: Diamond CBO: 2

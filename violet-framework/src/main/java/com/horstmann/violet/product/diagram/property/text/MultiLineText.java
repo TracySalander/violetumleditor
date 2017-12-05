@@ -131,7 +131,7 @@ public class MultiLineText extends LineText
     /**
      * @return list of rows
      */
-    private List<OneLineText> getRows()
+    public List<OneLineText> getRows()
     {
         if(null == rows)
         {

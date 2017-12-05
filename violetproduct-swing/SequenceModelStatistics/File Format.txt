@@ -1,0 +1,4 @@
+Object1 Object2 Object3 //<--Object names
+3 //<--amount of objects
+1 2 3// <--Outgoing messages per object(each column represents each object, so here object1 outgoing messages = 1)
+2 1 0 //<--return messages  per object(each column represents each object, so here object1 return messages = 2)
